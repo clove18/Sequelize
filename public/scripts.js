@@ -1,23 +1,25 @@
-
+/*Code for inserting table to data adapted from 
+https://www.aspsnippets.com/Articles/Convert-JSON-data-to-HTML-Table-using-JavaScript.aspx */
 
 async function windowActions(){
-    const diningArray = [];
+    // Get response from server
+    const objectArray = [];
     const dining = await fetch("/api/dining")
     .then((blob) => blob.json());
-    diningArray.push(...dining['data']);
+    objectArray.push(...dining['data']);
+    // Create array of strings
     hallArray = [];
-    const headers = Object.keys(diningArray[0]);
+    const headers = Object.keys(objectArray[0]);
     hallArray.push(headers);
     console.log(hallArray);
-    for (let i = 0; i < diningArray.length; i++){
-       const values = Object.values(diningArray[i]);
+    for (let i = 0; i < objectArray.length; i++){
+       const values = Object.values(objectArray[i]);
        hallArray.push(values);
        console.log(values);
-
     }
     console.log(hallArray);
     console.log(dining);
-    console.log(diningArray);
+    console.log(objectArray);
 
     //Get the count of columns.
     const table = document.getElementById("table");
